@@ -98,7 +98,7 @@ app.controller('CategoriesCtrl', function ($scope, $http, CategoriesFactory) {
         });
     };
     $scope.loadForm = function (id) {
-        if (id = null) {
+        if (id == null) {
             $scope.newCategory = {};
         }
         else
@@ -119,34 +119,66 @@ app.controller('CategoriesCtrl', function ($scope, $http, CategoriesFactory) {
             });
         }
     };
-    $scope.SaveNewCategory = function () {
-        swal({
-            showLoaderOnConfirm: true,
-            type: 'info',
-            title: 'Procesando',
-            text: 'Esto puede tomar unos segundos',
-            showConfirmButton: false
-        });
-        $http.post(domain + 'api/Categorias', $scope.newCategory)
-        .success(function () {
-            swal({
-                title: "Registrado!",
-                text: "Se ha registrado satisfactoriamente",
-                type: "success", showCancelButton: false,
-                confirmButtonText: "Ok!", closeOnConfirm: false
-            }, function () { location.reload(); });
-        })
-        .error(function () {
+    $scope.saveForm = function () {
+        if ($scope.newCategory.CategoryID != null) {
             swal({
                 showLoaderOnConfirm: true,
-                type: 'error',
-                title: 'Error',
-                text: 'Ha ocurrido un error, pruebe mas tarde',
-                showCancelButton: false,
+                type: 'info',
+                title: 'Procesando',
+                text: 'Esto puede tomar unos segundos',
                 showConfirmButton: false
             });
-        });
-    };
+            $http.put(domain + 'api/Categorias/' + $scope.newCategory.CategoryID, $scope.newCategory)
+               .success(function () {
+                   swal({
+                       title: "Actualizado!",
+                       text: "Se ha actualizado satisfactoriamente",
+                       type: "success", showCancelButton: false,
+                       confirmButtonText: "Ok!", closeOnConfirm: false
+                   }, function () { location.reload(); });
+               })
+               .error(function () {
+                   swal({
+                       showLoaderOnConfirm: true,
+                       type: 'error',
+                       title: 'Error',
+                       text: 'Ha ocurrido un error, pruebe mas tarde',
+                       showCancelButton: false,
+                       showConfirmButton: false
+                   });
+               });
+        }
+        else {
+            swal({
+                showLoaderOnConfirm: true,
+                type: 'info',
+                title: 'Procesando',
+                text: 'Esto puede tomar unos segundos',
+                showConfirmButton: false
+            });
+            $http.post(domain + 'api/Categorias', $scope.newCategory)
+            .success(function () {
+                swal({
+                    title: "Registrado!",
+                    text: "Se ha registrado satisfactoriamente",
+                    type: "success", showCancelButton: false,
+                    confirmButtonText: "Ok!", closeOnConfirm: false
+                }, function () { location.reload(); });
+            })
+            .error(function () {
+                swal({
+                    showLoaderOnConfirm: true,
+                    type: 'error',
+                    title: 'Error',
+                    text: 'Ha ocurrido un error, pruebe mas tarde',
+                    showCancelButton: false,
+                    showConfirmButton: false
+                });
+            });
+        }
+       
+    }
+   
     $scope.position = 10;
     $scope.nextCategories = function () {
         if ($scope.categories.length > $scope.position) {
