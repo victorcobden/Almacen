@@ -62,8 +62,6 @@ app.controller('ProductsCtrl', function ($scope, $http, ProductsFactory, Categor
         });
     };
 
-  
-
     $scope.loadForm = function (id) {
         if (id == null) {
             $scope.newProduct = {};

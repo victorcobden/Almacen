@@ -70,29 +70,20 @@ namespace Repository
             return Result;
         }
 
-        public TEntity FindEntity<TEntity, TEntityR>(Expression<Func<TEntity, bool>> criteria1, Expression<Func<TEntity, TEntityR>> criteria2) where TEntity : class
+        public TEntity FindEntity<TEntity>(Expression<Func<TEntity, bool>> criteria, params string[] relations) where TEntity : class
         {
             TEntity Result = null;
 
             try
             {
-                Result = Context.Set<TEntity>().Include(criteria2).FirstOrDefault(criteria1);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+                var query = Context.Set<TEntity>().AsQueryable();
 
-            return Result;
-        }
+                foreach (var item in relations)
+                {
+                    query = query.Include(item);
+                }
 
-        public TEntity FindEntity<TEntity>(Expression<Func<TEntity, bool>> criteria1, string criteria2, string criteria3) where TEntity : class
-        {
-            TEntity Result = null;
-
-            try
-            {
-                Result = Context.Set<TEntity>().Include(criteria2).Include(criteria3).FirstOrDefault(criteria1);
+                Result = query.FirstOrDefault(criteria);
             }
             catch (Exception ex)
             {
@@ -163,6 +154,31 @@ namespace Repository
             {
                 Context.Dispose();
             }
+        }
+
+        public IEnumerable<TEntity> GetAll<TEntity>(params string[] relations) where TEntity : class
+        {
+            List<TEntity> Result = null;
+
+            try
+            {
+
+                var query = Context.Set<TEntity>().AsQueryable();
+
+                foreach (var item in relations)
+                {
+                    query = query.Include(item);
+                }
+
+                Result = query.ToList();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return Result;
         }
     }
 }

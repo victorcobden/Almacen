@@ -10,7 +10,7 @@ namespace Business
         IRepository repo = new Business.Repository();
         public IEnumerable<Product> GetAll()
         {
-            return repo.GetAll<Product>();
+            return repo.GetAll<Product>("Category");
         }
         public Product Find(string id)
         {
