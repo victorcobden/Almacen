@@ -399,15 +399,16 @@ app.controller('CategoriesCtrl', function ($scope, $http, CategoriesFactory) {
                             showConfirmButton: false
                         });
                     })
-                    .error(function () {
+                    .error(function (data) {
                         swal({
                             showLoaderOnConfirm: true,
                             type: 'error',
                             title: 'Error',
-                            text: 'Ha ocurrido un error, pruebe mas tarde',
+                            text:data,
                             showCancelButton: false,
-                            showConfirmButton: false
-                        });
+                            confirmButtonText: "Aceptar",
+                            closeOnConfirm: false
+                        }, function () { swal.close(); });
                     });
             });
         }
@@ -557,15 +558,16 @@ app.controller('SuppliersCtrl', function ($scope, $http, SuppliersFactory) {
                             showConfirmButton: false
                         });
                     })
-                    .error(function () {
+                    .error(function (data) {
                         swal({
                             showLoaderOnConfirm: true,
                             type: 'error',
                             title: 'Error',
-                            text: 'Ha ocurrido un error, pruebe mas tarde',
+                            text: data,
                             showCancelButton: false,
-                            showConfirmButton: false
-                        });
+                            confirmButtonText: "Aceptar",
+                            closeOnConfirm: false
+                        }, function () { swal.close(); });
                     });
             });
         }

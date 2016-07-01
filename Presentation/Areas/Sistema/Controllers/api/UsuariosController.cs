@@ -89,5 +89,10 @@ namespace Presentation.Areas.Sistema.Controllers.api
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+        }
     }
 }

@@ -57,8 +57,12 @@ namespace Presentation.Areas.Sistema.Controllers.api
             var supplier = supplierBL.Find(id);
             if (supplier!= null)
             {
-                supplierBL.Delete(supplier);
-                return Request.CreateResponse(HttpStatusCode.OK);
+                var response = supplierBL.Delete(supplier);
+                if (response)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                }
+                return Request.CreateResponse(HttpStatusCode.Conflict, "Algunos productos dependen de este proveedor");
             }
             else
             {

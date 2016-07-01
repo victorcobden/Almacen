@@ -50,17 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlmacenContext.cs" />
-    <Compile Include="Migrations\201606301905439_Initial.cs" />
-    <Compile Include="Migrations\201606301905439_Initial.Designer.cs">
-      <DependentUpon>201606301905439_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606301908291_ChangeQuantityTypeInProduct.cs" />
-    <Compile Include="Migrations\201606301908291_ChangeQuantityTypeInProduct.Designer.cs">
-      <DependentUpon>201606301908291_ChangeQuantityTypeInProduct.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606301910215_AddedRequiredFields.cs" />
-    <Compile Include="Migrations\201606301910215_AddedRequiredFields.Designer.cs">
-      <DependentUpon>201606301910215_AddedRequiredFields.cs</DependentUpon>
+    <Compile Include="Migrations\201607012049374_Initial.cs" />
+    <Compile Include="Migrations\201607012049374_Initial.Designer.cs">
+      <DependentUpon>201607012049374_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,14 +68,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201606301905439_Initial.resx">
-      <DependentUpon>201606301905439_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606301908291_ChangeQuantityTypeInProduct.resx">
-      <DependentUpon>201606301908291_ChangeQuantityTypeInProduct.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606301910215_AddedRequiredFields.resx">
-      <DependentUpon>201606301910215_AddedRequiredFields.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201607012049374_Initial.resx">
+      <DependentUpon>201607012049374_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

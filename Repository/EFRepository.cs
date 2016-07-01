@@ -46,9 +46,9 @@ namespace Repository
                 Context.Set<TEntity>().Remove(deletedEntity);
                 Result = TrySaveChanges() > 0;
             }
-            catch (Exception ex)
+            catch 
             {
-                throw ex;
+                return false;
             }
 
             return Result;

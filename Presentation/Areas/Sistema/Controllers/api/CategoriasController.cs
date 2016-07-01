@@ -60,8 +60,12 @@ namespace Presentation.Areas.Sistema.Controllers.api
             var category = categoryBL.Find(id);
             if (category != null)
             {
-                categoryBL.Delete(category);
-                return Request.CreateResponse(HttpStatusCode.OK);
+                var response = categoryBL.Delete(category);
+                if (response)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                }
+                return Request.CreateResponse(HttpStatusCode.Conflict, "Algunos productos dependen de esta categoría");
             }
             else
             {
