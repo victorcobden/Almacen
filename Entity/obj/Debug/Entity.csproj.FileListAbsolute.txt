@@ -1,0 +1,9 @@
+C:\Users\Victor\Documents\Repositorio\Almacen\Entity\bin\Debug\Entity.dll.config
+C:\Users\Victor\Documents\Repositorio\Almacen\Entity\bin\Debug\Entity.dll
+C:\Users\Victor\Documents\Repositorio\Almacen\Entity\bin\Debug\Entity.pdb
+C:\Users\Victor\Documents\Repositorio\Almacen\Entity\bin\Debug\EntityFramework.dll
+C:\Users\Victor\Documents\Repositorio\Almacen\Entity\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Victor\Documents\Repositorio\Almacen\Entity\bin\Debug\EntityFramework.xml
+C:\Users\Victor\Documents\Repositorio\Almacen\Entity\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Victor\Documents\Repositorio\Almacen\Entity\obj\Debug\Entity.dll
+C:\Users\Victor\Documents\Repositorio\Almacen\Entity\obj\Debug\Entity.pdb
