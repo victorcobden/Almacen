@@ -12,7 +12,7 @@ namespace DAL
     {
         public AlmacenContext() : base("DefaultConnection")
         {
-
+            Database.SetInitializer<AlmacenContext>(null);
         }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }

@@ -8,3 +8,13 @@ C:\Users\Victor\Documents\Repositorio\Almacen\Repository\bin\Debug\EntityFramewo
 C:\Users\Victor\Documents\Repositorio\Almacen\Repository\obj\Debug\Repository.dll
 C:\Users\Victor\Documents\Repositorio\Almacen\Repository\obj\Debug\Repository.pdb
 C:\Users\Victor\Documents\Repositorio\Almacen\Repository\obj\Debug\Repository.csprojResolveAssemblyReference.cache
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Repository\bin\Debug\Repository.dll.config
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Repository\bin\Debug\Repository.dll
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Repository\bin\Debug\Repository.pdb
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Repository\bin\Debug\EntityFramework.dll
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Repository\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Repository\bin\Debug\EntityFramework.xml
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Repository\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Repository\obj\Debug\Repository.csprojResolveAssemblyReference.cache
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Repository\obj\Debug\Repository.dll
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Repository\obj\Debug\Repository.pdb

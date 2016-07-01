@@ -13,6 +13,8 @@ namespace Repository
         bool Update<TEntity>(TEntity modifiedEntity) where TEntity : class;
         bool Delete<TEntity>(TEntity deletedEntity) where TEntity : class;
         TEntity FindEntity<TEntity>(Expression<Func<TEntity, bool>> criteria) where TEntity : class;
+        TEntity FindEntity<TEntity, TEntityR>(Expression<Func<TEntity, bool>> criteria1, Expression<Func<TEntity, TEntityR>> criteria2) where TEntity : class;
+        TEntity FindEntity<TEntity>(Expression<Func<TEntity, bool>> criteria1, string criteria2, string criteria3) where TEntity : class;
         IEnumerable<TEntity> GetAll<TEntity>(Expression<Func<TEntity, bool>> criteria) where TEntity : class;
         IEnumerable<TEntity> GetAll<TEntity>() where TEntity : class;
     }

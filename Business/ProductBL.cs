@@ -14,7 +14,7 @@ namespace Business
         }
         public Product Find(string id)
         {
-            return repo.FindEntity<Product>(x => x.ProductID == id);
+            return repo.FindEntity<Product>(x => x.ProductID == id, "Category", "Supplier");
         }
         public Product Create(Product newProduct)
         {

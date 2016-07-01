@@ -70,6 +70,38 @@ namespace Repository
             return Result;
         }
 
+        public TEntity FindEntity<TEntity, TEntityR>(Expression<Func<TEntity, bool>> criteria1, Expression<Func<TEntity, TEntityR>> criteria2) where TEntity : class
+        {
+            TEntity Result = null;
+
+            try
+            {
+                Result = Context.Set<TEntity>().Include(criteria2).FirstOrDefault(criteria1);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return Result;
+        }
+
+        public TEntity FindEntity<TEntity>(Expression<Func<TEntity, bool>> criteria1, string criteria2, string criteria3) where TEntity : class
+        {
+            TEntity Result = null;
+
+            try
+            {
+                Result = Context.Set<TEntity>().Include(criteria2).Include(criteria3).FirstOrDefault(criteria1);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return Result;
+        }
+
         public bool Update<TEntity>(TEntity modifiedEntity) where TEntity : class
         {
             bool Result = false;
@@ -132,7 +164,5 @@ namespace Repository
                 Context.Dispose();
             }
         }
-
-        
     }
 }

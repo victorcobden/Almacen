@@ -32,7 +32,7 @@ app.factory('SuppliersFactory', ['$http', function ($http) {
     }
 }]);
 
-app.controller('ProductsCtrl', function ($scope, $http, ProductsFactory) {
+app.controller('ProductsCtrl', function ($scope, $http, ProductsFactory, CategoriesFactory, SuppliersFactory) {
     swal({
         showLoaderOnConfirm: true,
         type: 'info',
@@ -41,6 +41,9 @@ app.controller('ProductsCtrl', function ($scope, $http, ProductsFactory) {
         showConfirmButton: false
     });
     $scope.products = [];
+    $scope.newProduct = {};
+    $scope.AllCategories = {};
+    $scope.AllSuppliers = {};
     $scope.init = function () {
         ProductsFactory.getProducts()
         .success(function (data) {
@@ -58,6 +61,193 @@ app.controller('ProductsCtrl', function ($scope, $http, ProductsFactory) {
             });
         });
     };
+
+  
+
+    $scope.loadForm = function (id) {
+        if (id == null) {
+            $scope.newProduct = {};
+        }
+        else {
+            $http.get(domain + 'api/Productos/' + id)
+            .success(function (data) {
+                $scope.newProduct = data;
+            })
+            .error(function () {
+                swal({
+                    showLoaderOnConfirm: true,
+                    type: 'error',
+                    title: 'Error',
+                    text: 'Ha ocurrido un error, pruebe mas tarde',
+                    showCancelButton: false,
+                    showConfirmButton: false
+                });
+            });
+        }
+
+        CategoriesFactory.getCategories()
+        .success(function (data) {
+            $scope.AllCategories = data;
+        })
+        .error(function () {
+            swal({
+                showLoaderOnConfirm: true,
+                type: 'error',
+                title: 'Error',
+                text: 'Ha ocurrido un error, pruebe mas tarde',
+                showCancelButton: false,
+                showConfirmButton: false
+            });
+        });
+
+        SuppliersFactory.getSuppliers()
+        .success(function (data) {
+            $scope.AllSuppliers = data;
+        })
+        .error(function () {
+            swal({
+                showLoaderOnConfirm: true,
+                type: 'error',
+                title: 'Error',
+                text: 'Ha ocurrido un error, pruebe mas tarde',
+                showCancelButton: false,
+                showConfirmButton: false
+            });
+        });
+
+
+    };
+    $scope.saveForm = function () {
+        if ($scope.newProduct.ProductID != null) {
+            swal({
+                showLoaderOnConfirm: true,
+                type: 'info',
+                title: 'Procesando',
+                text: 'Esto puede tomar unos segundos',
+                showConfirmButton: false
+            });
+            var categoryU = [];
+            var supplierU = [];
+            $http.get(domain + 'api/Categorias/' + $scope.newProduct.CategoryID)
+                .success(function (data) {
+                    $scope.newProduct.Category = data;
+                    
+
+                    $http.get(domain + 'api/Proveedores/' + $scope.newProduct.SupplierID)
+                            .success(function (data) {
+                                $scope.newProduct.Supplier = data;
+
+                                $http.put(domain + 'api/Productos/' + $scope.newProduct.ProductID, $scope.newProduct)
+                                   .success(function () {
+                                       swal({
+                                           title: "Actualizado!",
+                                           text: "Se ha actualizado satisfactoriamente",
+                                           type: "success", showCancelButton: false,
+                                           confirmButtonText: "Ok!", closeOnConfirm: false
+                                       }, function () { $scope.init(); $('#newProduct').modal('hide'); });
+                                   })
+                                   .error(function () {
+                                       swal({
+                                           showLoaderOnConfirm: true,
+                                           type: 'error',
+                                           title: 'Error',
+                                           text: 'Ha ocurrido un error, pruebe mas tarde',
+                                           showCancelButton: false,
+                                           showConfirmButton: false
+                                       });
+                                   });
+                            })
+                            .error(function () {
+                                swal({
+                                    showLoaderOnConfirm: true,
+                                    type: 'error',
+                                    title: 'Error',
+                                    text: 'Ha ocurrido un error, pruebe mas tarde',
+                                    showCancelButton: false,
+                                    showConfirmButton: false
+                                });
+                            });
+                })
+                .error(function () {
+                    swal({
+                        showLoaderOnConfirm: true,
+                        type: 'error',
+                        title: 'Error',
+                        text: 'Ha ocurrido un error, pruebe mas tarde',
+                        showCancelButton: false,
+                        showConfirmButton: false
+                    });
+                });
+        }
+        else {
+            swal({
+                showLoaderOnConfirm: true,
+                type: 'info',
+                title: 'Procesando',
+                text: 'Esto puede tomar unos segundos',
+                showConfirmButton: false
+            });
+            $http.post(domain + 'api/Productos', $scope.newProduct)
+            .success(function () {
+                swal({
+                    title: "Registrado!",
+                    text: "Se ha registrado satisfactoriamente",
+                    type: "success", showCancelButton: false,
+                    confirmButtonText: "Ok!", closeOnConfirm: false
+                }, function () { $scope.init(); $('#newProduct').modal('hide'); });
+            })
+            .error(function () {
+                swal({
+                    showLoaderOnConfirm: true,
+                    type: 'error',
+                    title: 'Error',
+                    text: 'Ha ocurrido un error, pruebe mas tarde',
+                    showCancelButton: false,
+                    showConfirmButton: false
+                });
+            });
+        }
+
+    }
+    $scope.delete = function (id) {
+        if (id == null) {
+            return;
+        }
+        else {
+            swal({
+                title: "¿Estas seguro?",
+                text: "Se va a eliminar el producto",
+                type: "warning", showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Si, eliminar!",
+                closeOnConfirm: false
+            }, function () {
+                $http.delete(domain + 'api/Productos/' + id)
+                    .success(function (data) {
+                        $scope.init();
+                        swal({
+                            showLoaderOnConfirm: true,
+                            type: 'success',
+                            title: 'Eliminado',
+                            text: 'Se ha eliminado el producto',
+                            showCancelButton: false,
+                            showConfirmButton: false
+                        });
+                    })
+                    .error(function () {
+                        swal({
+                            showLoaderOnConfirm: true,
+                            type: 'error',
+                            title: 'Error',
+                            text: 'Ha ocurrido un error, pruebe mas tarde',
+                            showCancelButton: false,
+                            showConfirmButton: false
+                        });
+                    });
+            });
+        }
+    };
+
     $scope.position = 10;
     $scope.nextProducts = function () {
         if ($scope.products.length > $scope.position) {
@@ -135,7 +325,7 @@ app.controller('CategoriesCtrl', function ($scope, $http, CategoriesFactory) {
                        text: "Se ha actualizado satisfactoriamente",
                        type: "success", showCancelButton: false,
                        confirmButtonText: "Ok!", closeOnConfirm: false
-                   }, function () { location.reload(); });
+                   }, function () { $scope.init(); $('#newCategory').modal('hide'); });
                })
                .error(function () {
                    swal({
@@ -163,7 +353,7 @@ app.controller('CategoriesCtrl', function ($scope, $http, CategoriesFactory) {
                     text: "Se ha registrado satisfactoriamente",
                     type: "success", showCancelButton: false,
                     confirmButtonText: "Ok!", closeOnConfirm: false
-                }, function () { location.reload(); });
+                }, function () { $scope.init(); $('#newCategory').modal('hide'); });
             })
             .error(function () {
                 swal({
@@ -178,7 +368,44 @@ app.controller('CategoriesCtrl', function ($scope, $http, CategoriesFactory) {
         }
        
     }
-   
+    $scope.delete = function (id) {
+        if (id == null) {
+            return;
+        }
+        else {
+            swal({
+                title: "¿Estas seguro?",
+                text: "Se va a eliminar la categoria",
+                type: "warning", showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Si, eliminar!",
+                closeOnConfirm: false
+            }, function () {
+                $http.delete(domain + 'api/Categorias/' + id)
+                    .success(function (data) {
+                        $scope.init();
+                        swal({
+                            showLoaderOnConfirm: true,
+                            type: 'success',
+                            title: 'Eliminado',
+                            text: 'Se ha eliminado la categoria',
+                            showCancelButton: false,
+                            showConfirmButton: false
+                        });
+                    })
+                    .error(function () {
+                        swal({
+                            showLoaderOnConfirm: true,
+                            type: 'error',
+                            title: 'Error',
+                            text: 'Ha ocurrido un error, pruebe mas tarde',
+                            showCancelButton: false,
+                            showConfirmButton: false
+                        });
+                    });
+            });
+        }
+    };
     $scope.position = 10;
     $scope.nextCategories = function () {
         if ($scope.categories.length > $scope.position) {
@@ -200,6 +427,7 @@ app.controller('SuppliersCtrl', function ($scope, $http, SuppliersFactory) {
         showConfirmButton: false
     });
     $scope.suppliers = [];
+    $scope.newSupplier = {};
     $scope.init = function () {
 
         SuppliersFactory.getSuppliers()
@@ -217,6 +445,124 @@ app.controller('SuppliersCtrl', function ($scope, $http, SuppliersFactory) {
                 showConfirmButton: false
             });
         });
+    };
+    $scope.loadForm = function (id) {
+        if (id == null) {
+            $scope.newSupplier = {};
+        }
+        else {
+            $http.get(domain + 'api/Proveedores/' + id)
+            .success(function (data) {
+                $scope.newSupplier = data;
+            })
+            .error(function () {
+                swal({
+                    showLoaderOnConfirm: true,
+                    type: 'error',
+                    title: 'Error',
+                    text: 'Ha ocurrido un error, pruebe mas tarde',
+                    showCancelButton: false,
+                    showConfirmButton: false
+                });
+            });
+        }
+    };
+    $scope.saveForm = function () {
+        if ($scope.newSupplier.SupplierID != null) {
+            swal({
+                showLoaderOnConfirm: true,
+                type: 'info',
+                title: 'Procesando',
+                text: 'Esto puede tomar unos segundos',
+                showConfirmButton: false
+            });
+            $http.put(domain + 'api/Proveedores/' + $scope.newSupplier.SupplierID, $scope.newSupplier)
+               .success(function () {
+                   swal({
+                       title: "Actualizado!",
+                       text: "Se ha actualizado satisfactoriamente",
+                       type: "success", showCancelButton: false,
+                       confirmButtonText: "Ok!", closeOnConfirm: false
+                   }, function () { $scope.init(); $('#newSupplier').modal('hide'); });
+               })
+               .error(function () {
+                   swal({
+                       showLoaderOnConfirm: true,
+                       type: 'error',
+                       title: 'Error',
+                       text: 'Ha ocurrido un error, pruebe mas tarde',
+                       showCancelButton: false,
+                       showConfirmButton: false
+                   });
+               });
+        }
+        else {
+            swal({
+                showLoaderOnConfirm: true,
+                type: 'info',
+                title: 'Procesando',
+                text: 'Esto puede tomar unos segundos',
+                showConfirmButton: false
+            });
+            $http.post(domain + 'api/Proveedores', $scope.newSupplier)
+            .success(function () {
+                swal({
+                    title: "Registrado!",
+                    text: "Se ha registrado satisfactoriamente",
+                    type: "success", showCancelButton: false,
+                    confirmButtonText: "Ok!", closeOnConfirm: false
+                }, function () { $scope.init(); $('#newSupplier').modal('hide'); });
+            })
+            .error(function () {
+                swal({
+                    showLoaderOnConfirm: true,
+                    type: 'error',
+                    title: 'Error',
+                    text: 'Ha ocurrido un error, pruebe mas tarde',
+                    showCancelButton: false,
+                    showConfirmButton: false
+                });
+            });
+        }
+
+    }
+    $scope.delete = function (id) {
+        if (id == null) {
+            return;
+        }
+        else {
+            swal({
+                title: "¿Estas seguro?",
+                text: "Se va a eliminar el proveedor",
+                type: "warning", showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Si, eliminar!",
+                closeOnConfirm: false
+            }, function () {
+                $http.delete(domain + 'api/Proveedores/' + id)
+                    .success(function (data) {
+                        $scope.init();
+                        swal({
+                            showLoaderOnConfirm: true,
+                            type: 'success',
+                            title: 'Eliminado',
+                            text: 'Se ha eliminado el proveedor',
+                            showCancelButton: false,
+                            showConfirmButton: false
+                        });
+                    })
+                    .error(function () {
+                        swal({
+                            showLoaderOnConfirm: true,
+                            type: 'error',
+                            title: 'Error',
+                            text: 'Ha ocurrido un error, pruebe mas tarde',
+                            showCancelButton: false,
+                            showConfirmButton: false
+                        });
+                    });
+            });
+        }
     };
     $scope.position = 10;
     $scope.nextSuppliers = function () {

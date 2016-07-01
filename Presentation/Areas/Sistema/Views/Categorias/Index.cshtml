@@ -39,7 +39,7 @@
                         <td>{{category.Nombre}}</td>
                         <td>
                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newCategory" ng-click="loadForm(category.CategoryID)">Editar</button>
-                            <a href="#" class="btn btn-danger">Eliminar</a>
+                            <button type="button"  class="btn btn-danger" ng-click="delete(category.CategoryID)">Eliminar</button>
                         </td>
                     </tr>
                 </tbody>
@@ -67,7 +67,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="newCategoryLabel">Nueva Categoría</h4>
+                    <h4 class="modal-title" id="newCategoryLabel" ng-show="newCategory.CategoryID == null">Nueva Categoría</h4>
+                    <h4 class="modal-title" id="newCategoryLabel" ng-show="newCategory.CategoryID != null">Editar Categoría</h4>
                 </div>
                 <div class="modal-body">
                     <form>

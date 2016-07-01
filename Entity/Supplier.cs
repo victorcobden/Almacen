@@ -6,16 +6,13 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 
 namespace Entity
 {
     [Table("Supplier")]
     public class Supplier
     {
-        public Supplier()
-        {
-            Products = new HashSet<Product>();
-        }
         [StringLength(128)]
         public string SupplierID { get; set; }
         [Required]
@@ -26,7 +23,5 @@ namespace Entity
         public string Razon { get; set; }
         [StringLength(40, MinimumLength = 7)]
         public string Email { get; set; }
-
-        public virtual ICollection<Product> Products { get; set; }
     }
 }
