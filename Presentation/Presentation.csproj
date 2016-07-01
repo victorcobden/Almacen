@@ -180,10 +180,12 @@
     <Compile Include="Areas\Sistema\Controllers\api\CategoriasController.cs" />
     <Compile Include="Areas\Sistema\Controllers\api\ProductosController.cs" />
     <Compile Include="Areas\Sistema\Controllers\api\ProveedoresController.cs" />
+    <Compile Include="Areas\Sistema\Controllers\api\UsuariosController.cs" />
     <Compile Include="Areas\Sistema\Controllers\CategoriasController.cs" />
     <Compile Include="Areas\Sistema\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Sistema\Controllers\ProductosController.cs" />
     <Compile Include="Areas\Sistema\Controllers\ProveedoresController.cs" />
+    <Compile Include="Areas\Sistema\Controllers\UsuariosController.cs" />
     <Compile Include="Areas\Sistema\SistemaAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -223,6 +225,7 @@
     <Content Include="Areas\Sistema\Views\Categorias\Index.cshtml" />
     <Content Include="Areas\Sistema\Views\Proveedores\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Areas\Sistema\Views\Usuarios\Index.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
@@ -251,7 +254,6 @@
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />

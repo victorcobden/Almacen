@@ -31,6 +31,14 @@ app.factory('SuppliersFactory', ['$http', function ($http) {
         }
     }
 }]);
+app.factory('UsersFactory', ['$http', function ($http) {
+    return {
+        getUsers: function () {
+            return $http.get(domain + 'api/Usuarios');
+        }
+    }
+}]);
+
 
 app.controller('ProductsCtrl', function ($scope, $http, ProductsFactory, CategoriesFactory, SuppliersFactory) {
     swal({
@@ -569,6 +577,164 @@ app.controller('SuppliersCtrl', function ($scope, $http, SuppliersFactory) {
         }
     };
     $scope.previousSuppliers = function () {
+        if ($scope.position > 10) {
+            $scope.position -= 10;
+        }
+    };
+});
+
+app.controller('UsersCtrl', function ($scope, $http, UsersFactory) {
+    swal({
+        showLoaderOnConfirm: true,
+        type: 'info',
+        title: 'Cargando',
+        text: 'Esto puede tomar unos segundos',
+        showConfirmButton: false
+    });
+    $scope.users = [];
+    $scope.newUser = {};
+    $scope.init = function () {
+
+        UsersFactory.getUsers()
+        .success(function (data) {
+            $scope.users = data;
+            swal.close();
+        })
+        .error(function () {
+            swal({
+                showLoaderOnConfirm: true,
+                type: 'error',
+                title: 'Error',
+                text: 'Ha ocurrido un error, pruebe mas tarde',
+                showCancelButton: false,
+                showConfirmButton: false
+            });
+        });
+    };
+    $scope.loadForm = function (id) {
+        if (id == null) {
+            $scope.newUser = {};
+        }
+        else {
+            $http.get(domain + 'api/Usuarios/' + id)
+            .success(function (data) {
+                $scope.newUser = data;
+            })
+            .error(function () {
+                swal({
+                    showLoaderOnConfirm: true,
+                    type: 'error',
+                    title: 'Error',
+                    text: 'Ha ocurrido un error, pruebe mas tarde',
+                    showCancelButton: false,
+                    showConfirmButton: false
+                });
+            });
+        }
+    };
+    $scope.saveForm = function () {
+        if ($scope.newUser.Id != null) {
+            swal({
+                showLoaderOnConfirm: true,
+                type: 'info',
+                title: 'Procesando',
+                text: 'Esto puede tomar unos segundos',
+                showConfirmButton: false
+            });
+            $http.put(domain + 'api/Usuarios/' + $scope.newUser.Id, $scope.newUser)
+               .success(function () {
+                   swal({
+                       title: "Actualizado!",
+                       text: "Se ha actualizado satisfactoriamente",
+                       type: "success", showCancelButton: false,
+                       confirmButtonText: "Ok!", closeOnConfirm: false
+                   }, function () { $scope.init(); $('#newUser').modal('hide'); });
+               })
+               .error(function () {
+                   swal({
+                       showLoaderOnConfirm: true,
+                       type: 'error',
+                       title: 'Error',
+                       text: 'Ha ocurrido un error, pruebe mas tarde',
+                       showCancelButton: false,
+                       showConfirmButton: false
+                   });
+               });
+        }
+        else {
+            swal({
+                showLoaderOnConfirm: true,
+                type: 'info',
+                title: 'Procesando',
+                text: 'Esto puede tomar unos segundos',
+                showConfirmButton: false
+            });
+            $http.post(domain + 'api/Usuarios', $scope.newUser)
+            .success(function () {
+                swal({
+                    title: "Registrado!",
+                    text: "Se ha registrado satisfactoriamente",
+                    type: "success", showCancelButton: false,
+                    confirmButtonText: "Ok!", closeOnConfirm: false
+                }, function () { $scope.init(); $('#newUser').modal('hide'); });
+            })
+            .error(function () {
+                swal({
+                    showLoaderOnConfirm: true,
+                    type: 'error',
+                    title: 'Error',
+                    text: 'Ha ocurrido un error, pruebe mas tarde',
+                    showCancelButton: false,
+                    showConfirmButton: false
+                });
+            });
+        }
+    }
+    $scope.delete = function (id) {
+        if (id == null) {
+            return;
+        }
+        else {
+            swal({
+                title: "¿Estas seguro?",
+                text: "Se va a eliminar el usuario",
+                type: "warning", showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Si, eliminar!",
+                closeOnConfirm: false
+            }, function () {
+                $http.delete(domain + 'api/Usuarios/' + id)
+                    .success(function () {
+                        $scope.init();
+                        swal({
+                            showLoaderOnConfirm: true,
+                            type: 'success',
+                            title: 'Eliminado',
+                            text: 'Se ha eliminado el proveedor',
+                            showCancelButton: false,
+                            showConfirmButton: false
+                        });
+                    })
+                    .error(function () {
+                        swal({
+                            showLoaderOnConfirm: true,
+                            type: 'error',
+                            title: 'Error',
+                            text: 'Ha ocurrido un error, pruebe mas tarde',
+                            showCancelButton: false,
+                            showConfirmButton: false
+                        });
+                    });
+            });
+        }
+    };
+    $scope.position = 10;
+    $scope.nextUsers = function () {
+        if ($scope.users.length > $scope.position) {
+            $scope.position += 10;
+        }
+    };
+    $scope.previousUsers = function () {
         if ($scope.position > 10) {
             $scope.position -= 10;
         }
