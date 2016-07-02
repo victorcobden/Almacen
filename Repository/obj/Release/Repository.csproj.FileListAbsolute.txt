@@ -1,0 +1,10 @@
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Repository\bin\Release\Repository.dll.config
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Repository\bin\Release\Repository.dll
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Repository\bin\Release\Repository.pdb
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Repository\bin\Release\EntityFramework.dll
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Repository\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Repository\bin\Release\EntityFramework.xml
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Repository\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Repository\obj\Release\Repository.csprojResolveAssemblyReference.cache
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Repository\obj\Release\Repository.dll
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Repository\obj\Release\Repository.pdb

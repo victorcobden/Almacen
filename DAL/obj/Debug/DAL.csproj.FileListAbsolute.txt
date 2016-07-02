@@ -26,5 +26,3 @@ C:\Users\Victor\Documents\Repositorio\AlmacenRepo\DAL\bin\Debug\EntityFramework.
 C:\Users\Victor\Documents\Repositorio\AlmacenRepo\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
 C:\Users\Victor\Documents\Repositorio\AlmacenRepo\DAL\obj\Debug\DAL.dll
 C:\Users\Victor\Documents\Repositorio\AlmacenRepo\DAL\obj\Debug\DAL.pdb
-C:\Users\Victor\Documents\Repositorio\AlmacenRepo\DAL\obj\Debug\DAL.Migrations.Initial.resources
-C:\Users\Victor\Documents\Repositorio\AlmacenRepo\DAL\obj\Debug\DAL.csproj.GenerateResource.Cache

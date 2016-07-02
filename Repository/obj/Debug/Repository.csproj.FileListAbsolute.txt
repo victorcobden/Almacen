@@ -15,6 +15,5 @@ C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Repository\bin\Debug\EntityFra
 C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Repository\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Repository\bin\Debug\EntityFramework.xml
 C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Repository\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Repository\obj\Debug\Repository.csprojResolveAssemblyReference.cache
 C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Repository\obj\Debug\Repository.dll
 C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Repository\obj\Debug\Repository.pdb

@@ -50,11 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlmacenContext.cs" />
-    <Compile Include="Migrations\201607012049374_Initial.cs" />
-    <Compile Include="Migrations\201607012049374_Initial.Designer.cs">
-      <DependentUpon>201607012049374_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -66,11 +61,6 @@
       <Project>{3a0005a0-f262-4f60-9e2f-5f4b154baf31}</Project>
       <Name>Entity</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201607012049374_Initial.resx">
-      <DependentUpon>201607012049374_Initial.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

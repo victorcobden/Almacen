@@ -17,7 +17,8 @@ namespace Presentation.Areas.Sistema
             context.MapRoute(
                 "Sistema_default",
                 "Sistema/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { controller = "Dashboard",action = "Index", id = UrlParameter.Optional },
+                new string[] { "Presentation.Areas.Sistema.Controllers" }
             );
         }
     }

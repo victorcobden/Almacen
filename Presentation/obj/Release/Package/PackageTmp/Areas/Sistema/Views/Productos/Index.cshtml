@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewBag.Title = "Productos";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header text-center">
+            Productos
+        </h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="input-group">
+            <span class="input-group-addon" id="seachProduct">Búsqueda</span>
+            <input type="text" class="form-control" ng-model="seachProduct" placeholder="Búsqueda de producto" aria-describedby="seachProduct">
+        </div>
+    </div>
+</div>
+<div class="row" ng-controller="ProductsCtrl">
+    <hr />
+    <div class="col-lg-12">
+        <button type="button" data-toggle="modal" data-target="#newProduct" class="btn btn-primary" ng-click="loadForm()">Nuevo Producto</button>
+    </div>
+    <hr />
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-hover" ng-init="init()">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Cantidad</th>
+                        <th>Categoría</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="product in products | filter: seachProduct | limitTo: position | limitTo: -10">
+                        <td>{{product.Nombre}}</td>
+                        <td>{{product.Descripcion}}</td>
+                        <td>{{product.Cantidad}}</td>
+                        <td>{{product.Category.Nombre}}</td>
+                        <td>
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newProduct" ng-click="loadForm(product.ProductID)">Editar</button>
+                            <button type="button" class="btn btn-danger" ng-click="delete(product.ProductID)">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-lg-12 text-center" ng-show="products.length > 9">
+        <button class="btn btn-info" ng-click="previousProducts()" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            Anterior
+        </button>
+        <span>{{position/10}} / {{products.length/10 | roundUp}}</span>
+        <button class="btn btn-info" ng-click="nextProducts()" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            Siguiente
+        </button>
+    </div>
+    <div class="col-lg-12 text-center">
+        <label>{{products.length}} productos</label>
+    </div>
+
+    <div class="modal fade" id="newProduct" tabindex="-1" role="dialog" aria-labelledby="newProductLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="newProductLabel" ng-show="newProduct.ProductID == null">Nuevo Producto</h4>
+                    <h4 class="modal-title" id="newProductLabel" ng-show="newProduct.ProductID != null">Editar Producto</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="Nombre" class="control-label">Nombre:</label>
+                            <input type="hidden" ng-model="newProduct.ProductID" />
+                            <input type="text" class="form-control" id="Nombre" ng-model="newProduct.Nombre">
+                        </div>
+                        <div class="form-group">
+                            <label for="Descripcion" class="control-label">Descripción:</label>
+                            <input type="text" class="form-control" id="Descripcion" ng-model="newProduct.Descripcion">
+                        </div>
+                        <div class="form-group">
+                            <label for="Cantidad" class="control-label">Cantidad:</label>
+                            <input type="text" class="form-control" id="Cantidad" ng-model="newProduct.Cantidad">
+                        </div>
+                        <div class="form-group">
+                            <label  class="control-label">Categoría:</label>
+                            <select class="form-control" ng-model="newProduct.CategoryID" ng-options="category.CategoryID as category.Nombre for category in AllCategories">
+                                <option value="">-Seleccione una categoría-</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Proveedor:</label>
+                            <select class="form-control" ng-model="newProduct.SupplierID" ng-options="supplier.SupplierID as supplier.Razon for supplier in AllSuppliers">
+                                <option value="">-Seleccione un proveedor-</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" ng-click="saveForm()">Grabar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

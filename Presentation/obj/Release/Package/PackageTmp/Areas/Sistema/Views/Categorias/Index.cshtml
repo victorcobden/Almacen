@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "Categorías";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header text-center">
+            Categorías
+        </h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="input-group">
+            <span class="input-group-addon" id="seachCategory" >Búsqueda</span>
+            <input type="text" class="form-control" ng-model="seachCategory" placeholder="Búsqueda de categoría" aria-describedby="seachCategory">
+        </div>
+    </div>
+</div>
+
+<div class="row" ng-controller="CategoriesCtrl">
+    <hr />
+    <div class="col-lg-12">
+        <button type="button" data-toggle="modal" data-target="#newCategory" class="btn btn-primary" ng-click="loadForm()">Nueva Categoría</button>
+    </div>
+    <hr />
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-hover" ng-init="init()">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="category in categories | filter: seachCategory | limitTo: position | limitTo: -10">
+                        <td>{{category.Nombre}}</td>
+                        <td>
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newCategory" ng-click="loadForm(category.CategoryID)">Editar</button>
+                            <button type="button"  class="btn btn-danger" ng-click="delete(category.CategoryID)">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-lg-12 text-center" ng-show="categories.length > 9">
+        <button class="btn btn-info" ng-click="previousCategories()" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            Anterior
+        </button>
+        <span>{{position/10}} / {{categories.length/10 | roundUp}}</span>
+        <button class="btn btn-info" ng-click="nextCategories()" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            Siguiente
+        </button>
+    </div>
+    <div class="col-lg-12 text-center">
+        <label>{{categories.length}} categorías</label>
+    </div>
+
+
+    <div class="modal fade" id="newCategory" tabindex="-1" role="dialog" aria-labelledby="newCategoryLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="newCategoryLabel" ng-show="newCategory.CategoryID == null">Nueva Categoría</h4>
+                    <h4 class="modal-title" id="newCategoryLabel" ng-show="newCategory.CategoryID != null">Editar Categoría</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="categoryName" class="control-label">Nombre de la categoría:</label>
+                            <input type="hidden" ng-model="newCategory.CategoryID"/>
+                            <input type="text" class="form-control" id="categoryName" ng-model="newCategory.Nombre">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" ng-click="saveForm()">Grabar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

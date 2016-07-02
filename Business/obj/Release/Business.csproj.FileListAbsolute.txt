@@ -1,0 +1,16 @@
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Business\bin\Release\Business.dll.config
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Business\bin\Release\Business.dll
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Business\bin\Release\Business.pdb
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Business\bin\Release\DAL.dll
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Business\bin\Release\Entity.dll
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Business\bin\Release\EntityFramework.dll
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Business\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Business\bin\Release\Repository.dll
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Business\bin\Release\DAL.pdb
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Business\bin\Release\Entity.pdb
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Business\bin\Release\Repository.pdb
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Business\bin\Release\EntityFramework.xml
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Business\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Business\obj\Release\Business.csprojResolveAssemblyReference.cache
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Business\obj\Release\Business.dll
+C:\Users\Victor\Documents\Repositorio\AlmacenRepo\Business\obj\Release\Business.pdb
